@@ -55,6 +55,10 @@ const calculateResult = () => {
   //eşitlik;
   if (userSelectImg.alt === pcSelectImg.alt) {
     draw();
+  } else {
+    if (userSelectImg.alt === "rock") {
+      pcRandom === "paper" ? youLost() : youWin();
+    }
   }
 };
 
