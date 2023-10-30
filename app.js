@@ -13,5 +13,14 @@ const yourChoiceDiv = document.getElementById("your-choice");
 //**********VARİABLES***************
 
 //**********EVENT LİSTENERS**********
+rockImage.addEventListener("click", () => {
+  yourChoiceDiv.innerHTML = `<img src="./assets/rock.png" alt="rock">`;
+});
 
+paperImage.addEventListener("click", () => {
+  yourChoiceDiv.innerHTML = `<img src="./assets/paper.png" alt="paper">`;
+});
+scissorImage.addEventListener("click", () => {
+  yourChoiceDiv.innerHTML = `<img src="./assets/scissor.png" alt="scissor">`;
+});
 //**********FUNCTİONS***************
