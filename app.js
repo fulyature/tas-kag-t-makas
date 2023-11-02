@@ -16,12 +16,20 @@ const pcChoiceDiv = document.getElementById("pc-choice");
 //div in içinde element oldu. anlamak ıcın bu sekıl ısımlendırdık
 
 //message
+
 const messagePar = document.querySelector(".message");
 
 //scorecard
+
 const scoreCardSection = document.querySelector(".score-card");
 const pcScoreSpan = document.getElementById("pc-score");
 const yourScoreSpan = document.getElementById("your-score");
+
+//Modal
+
+const modalCardSection = document.querySelector(".modal-card");
+const finalMessagePar = document.getElementById("final-message");
+const playAgainBtn = document.getElementById("play-again");
 
 //**********VARİABLES***************
 let userSelectImg = document.createElement("img");
@@ -29,11 +37,13 @@ let pcSelectImg = document.createElement("img");
 let pcRandom;
 
 //colors
+
 const YELLOW = "#ffc538";
 const RED = "#f5415c";
 const GREEN = "#5ab781";
 
 //**********EVENT LİSTENERS**********
+
 selectionArticle.addEventListener("click", (e) => {
   // console.log(e.target.id)
   if (e.target.id) {
@@ -56,6 +66,7 @@ const createPcSelection = () => {
 const calculateResult = () => {
   //   console.log(userSelectImg);
   //eşitlik;
+
   if (userSelectImg.alt === pcSelectImg.alt) {
     draw();
   } else {
@@ -66,6 +77,10 @@ const calculateResult = () => {
     } else if (userSelectImg.alt === "paper") {
       pcRandom === "scissor" ? youLost() : youWin();
     }
+  }
+
+  if (pcScoreSpan.textContent === "10" || yourScoreSpan.textContent === "10") {
+    openModal();
   }
 };
 
@@ -87,6 +102,22 @@ const youWin = () => {
   scoreCardSection.style.color = GREEN;
   messagePar.style.backgroundColor = GREEN;
   yourScoreSpan.textContent++;
+};
+
+const openModal = () => {
+  modalCardSection.classList.add("show");
+
+  if (yourScoreSpan.textContent === "10") {
+    //? eger kullanici 10 puana usalti ise kullanici kazanmistir.
+    finalMessagePar.textContent = "💃 You Win🕺";
+    document.querySelector(".modal").style.backgroundColor = GREEN;
+    playAgainBtn.style.color = GREEN;
+  } else {
+    //? eger pc 10 puana ulasti ise pc kazanmistir.
+    finalMessagePar.textContent = "☹️ You Lost ☹️";
+    document.querySelector(".modal").style.backgroundColor = RED;
+    playAgainBtn.style.color = RED;
+  }
 };
 // rockImage.addEventListener("click", () => {
 //   yourChoiceDiv.innerHTML = `<img src="./assets/rock.png" alt="rock">`;
