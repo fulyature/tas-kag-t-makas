@@ -20,10 +20,12 @@ const messagePar = document.querySelector(".message");
 
 //scorecard
 const scoreCardSection = document.querySelector(".score-card");
+const pcScoreSpan = document.getElementById("pc-score");
 
 //**********VARİABLES***************
 let userSelectImg = document.createElement("img");
 let pcSelectImg = document.createElement("img");
+let pcRandom;
 
 //colors
 const YELLOW = "#ffc538";
@@ -72,7 +74,14 @@ const draw = () => {
   messagePar.style.backgroundColor = YELLOW;
 };
 
-const youLost = () => {};
+const youLost = () => {
+  messagePar.textContent = "You lost :(";
+  scoreCardSection.style.color = RED;
+  messagePar.style.backgroundColor = RED;
+  pcScoreSpan.textContent++;
+};
+
+const youWin = () => {};
 // rockImage.addEventListener("click", () => {
 //   yourChoiceDiv.innerHTML = `<img src="./assets/rock.png" alt="rock">`;
 // });
