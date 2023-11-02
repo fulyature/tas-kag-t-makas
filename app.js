@@ -67,7 +67,7 @@ playAgainBtn.addEventListener("click", () => {
 const createPcSelection = () => {
   const pcArr = ["rock", "paper", "scissor"];
   pcRandom = pcArr[Math.floor(Math.random() * 3)];
-  pcRandom = "rock";
+
   pcSelectImg.src = `./assets/${pcRandom}.png`;
   pcSelectImg.alt = pcRandom;
   pcChoiceDiv.appendChild(pcSelectImg);
@@ -117,7 +117,7 @@ const youWin = () => {
 
 const openModal = () => {
   modalCardSection.classList.add("show");
-
+  topScore();
   if (yourScoreSpan.textContent === "10") {
     //? eger kullanici 10 puana ulasti ise kullanici kazanmistir.
     finalMessagePar.textContent = "💃 You Win🕺";
@@ -131,10 +131,36 @@ const openModal = () => {
   }
 };
 const topScore = () => {
-  if (yourScoreSpan.textContent === "10" && pcScoreSpan === "0") {
-    tScore.textContent = "10 : 0";
+  const topScore = localStorage.getItem("topScore");
+  if (topScore) {
+    const oldTopScoreValues = topScore.split(" : ");
+    const oldTopScoreDiff = Math.abs(
+      oldTopScoreValues[0] - oldTopScoreValues[1]
+    );
+
+    const newDifference = Math.abs(
+      yourScoreSpan.textContent - Number(pcScoreSpan.textContent)
+    );
+    if (newDifference > oldTopScoreDiff) {
+      localStorage.setItem(
+        "topScore",
+        `${yourScoreSpan.textContent} : ${pcScoreSpan.textContent}`
+      );
+    }
+  } else {
+    tScore.textContent = `${yourScoreSpan.textContent} : ${pcScoreSpan.textContent}`;
+    localStorage.setItem(
+      "topScore",
+      `${yourScoreSpan.textContent} : ${pcScoreSpan.textContent}`
+    );
   }
 };
+window.addEventListener("DOMContentLoaded", () => {
+  const topScore = localStorage.getItem("topScore");
+  if (topScore) {
+    tScore.textContent = topScore;
+  }
+});
 // rockImage.addEventListener("click", () => {
 //   yourChoiceDiv.innerHTML = `<img src="./assets/rock.png" alt="rock">`;
 // });
