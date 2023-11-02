@@ -31,6 +31,8 @@ const modalCardSection = document.querySelector(".modal-card");
 const finalMessagePar = document.getElementById("final-message");
 const playAgainBtn = document.getElementById("play-again");
 
+const tScore = document.getElementById("top-score");
+
 //**********VARİABLES***************
 let userSelectImg = document.createElement("img");
 let pcSelectImg = document.createElement("img");
@@ -60,9 +62,12 @@ playAgainBtn.addEventListener("click", () => {
   window.location.reload();
 });
 
+//************** Functions*********/
+
 const createPcSelection = () => {
   const pcArr = ["rock", "paper", "scissor"];
   pcRandom = pcArr[Math.floor(Math.random() * 3)];
+  pcRandom = "rock";
   pcSelectImg.src = `./assets/${pcRandom}.png`;
   pcSelectImg.alt = pcRandom;
   pcChoiceDiv.appendChild(pcSelectImg);
@@ -123,6 +128,11 @@ const openModal = () => {
     finalMessagePar.textContent = "☹️ You Lost ☹️";
     document.querySelector(".modal").style.backgroundColor = RED;
     playAgainBtn.style.color = RED;
+  }
+};
+const topScore = () => {
+  if (yourScoreSpan.textContent === "10" && pcScoreSpan === "0") {
+    tScore.textContent = "10 : 0";
   }
 };
 // rockImage.addEventListener("click", () => {
