@@ -54,6 +54,12 @@ selectionArticle.addEventListener("click", (e) => {
   }
 });
 
+playAgainBtn.addEventListener("click", () => {
+  // modalCardSection.classList.toggle("show");
+  modalCardSection.style.display = "none";
+  window.location.reload();
+});
+
 const createPcSelection = () => {
   const pcArr = ["rock", "paper", "scissor"];
   pcRandom = pcArr[Math.floor(Math.random() * 3)];
@@ -108,7 +114,7 @@ const openModal = () => {
   modalCardSection.classList.add("show");
 
   if (yourScoreSpan.textContent === "10") {
-    //? eger kullanici 10 puana usalti ise kullanici kazanmistir.
+    //? eger kullanici 10 puana ulasti ise kullanici kazanmistir.
     finalMessagePar.textContent = "💃 You Win🕺";
     document.querySelector(".modal").style.backgroundColor = GREEN;
     playAgainBtn.style.color = GREEN;
