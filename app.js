@@ -58,6 +58,10 @@ const calculateResult = () => {
   } else {
     if (userSelectImg.alt === "rock") {
       pcRandom === "paper" ? youLost() : youWin();
+    } else if (userSelectImg.alt === "scissor") {
+      pcRandom === "rock" ? youLost() : youWin();
+    } else if (userSelectImg.alt === "paper") {
+      pcRandom === "scissor" ? youLost() : youWin();
     }
   }
 };
@@ -67,6 +71,8 @@ const draw = () => {
   scoreCardSection.style.color = YELLOW;
   messagePar.style.backgroundColor = YELLOW;
 };
+
+const youLost = () => {};
 // rockImage.addEventListener("click", () => {
 //   yourChoiceDiv.innerHTML = `<img src="./assets/rock.png" alt="rock">`;
 // });
